@@ -1,0 +1,20 @@
+<main>
+    {{#if hasNoOrders}}
+        <h1>Nothing there!</h1>
+    {{else}}
+        <ul class="orders">
+            {{#each order}}
+                <li class="orders__item">
+                    <h1>Order {{this._id}}</h1>
+                    <ul>
+                        {{#each this.products}}
+                            <li class="orders__products-item">
+                                {{this.productData.title}} - {{this.quantity}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</main>

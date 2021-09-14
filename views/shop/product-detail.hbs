@@ -1,0 +1,10 @@
+<main class="centered">
+    <h1> {{ product.title }} </h1>
+    <hr>
+    <div>
+        <img src="{{ product.imageUrl }}" alt="{{ product.title }}">
+    </div>
+    <h2> {{ product.prise }} </h2>
+    <p> {{ product.description }} </p>
+    {{> adToCard }}
+</main>
