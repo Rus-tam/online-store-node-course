@@ -18,6 +18,7 @@
         <div class="form-control">
             <label for="description">Description</label>
             <textarea name="description" id="description" rows="5">{{# if editing}}{{product.description}}{{/if}}</textarea>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
         </div>
 
         {{#if editing}}

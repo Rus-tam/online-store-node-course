@@ -7,4 +7,5 @@
     <h2> {{ product.prise }} </h2>
     <p> {{ product.description }} </p>
     {{> adToCard }}
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
 </main>

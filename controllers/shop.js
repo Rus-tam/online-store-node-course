@@ -7,15 +7,18 @@ const {log} = require("nodemon/lib/utils");
 exports.getIndexPage = (req, res, next) => {
     Product.find().lean()
         .then(products => {
-            console.log(req.session.isLoggedIn)
-        res.render('shop/index', {
-            prods: products,
-            docTitle: 'Shop',
-            hasProducts: products.length > 0,
-            activeShop: true,
-            productCSS: true,
-            isLoggedIn: req.session.isLoggedIn
-        });
+            const modifiedProds = [];
+            products.forEach(prod => {
+                prod.csrfToken = req.csrfToken();
+                modifiedProds.push(prod);
+            });
+            res.render('shop/index', {
+                prods: modifiedProds,
+                docTitle: 'Shop',
+                hasProducts: products.length > 0,
+                activeShop: true,
+                productCSS: true,
+            });
     })
         .catch(err => console.log(err));
 };
@@ -77,8 +80,13 @@ exports.postCartDeleteProduct = (req, res, next) => {
 exports.getProducts = (req, res, next) => {
     Product.find().lean()
         .then(products => {
+            const modifiedProds = [];
+            products.forEach(prod => {
+                prod.csrfToken = req.csrfToken();
+                modifiedProds.push(prod);
+            });
             res.render('shop/product-list', {
-                prods: products,
+                prods: modifiedProds,
                 docTitle: 'Shop',
                 hasProducts: products.length > 0,
                 activeProductList: true,
@@ -137,7 +145,7 @@ exports.postOrders = (req, res, next) => {
             const order = new Order({
                 products: products,
                 user: {
-                    name: req.user.name,
+                    email: req.user.email,
                     userId: req.user._id
                 }
             });

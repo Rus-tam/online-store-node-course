@@ -43,12 +43,16 @@
                 {{#if isLoggedIn}}
                     <li class="main-header__item-list">
                         <form action="/logout" method="post">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
                             <button type="submit">Logout</button>
                         </form>
                     </li>
                 {{else}}
                     <li class="main-header__item">
                         <a class="{{#if activeLogin}}active{{/if}}" href="/auth/login">Login</a>
+                    </li>
+                    <li class="main-header__item">
+                        <a class="{{#if activeSignup}}active{{/if}}" href="/signup">Signup</a>
                     </li>
                 {{/if}}
             </ul>

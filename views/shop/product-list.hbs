@@ -15,6 +15,7 @@
                     </div>
                     <div class="card__actions">
                         <a href="/products/{{ this._id }}" class="btn">Details</a>
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
                         {{> adToCard }}
                     </div>
                 </article>
