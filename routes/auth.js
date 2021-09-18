@@ -14,4 +14,12 @@ router.get('/signup', authController.getSignup);
 
 router.post('/signup', authController.postSignup);
 
+router.get('/auth/reset', authController.getReset);
+
+router.post('/reset', authController.postReset);
+
+router.get('/auth/reset/:token', authController.getNewPassword);
+
+router.post('/new-password', authController.postNewPassword);
+
 module.exports = router;
